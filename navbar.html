@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #main {
+        display: flex;
+        justify-content: space-between;
+      }
+      #main div:nth-child(1) {
+        width: 40%;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-family: sans-serif;
+        background: linear-gradient(
+            to right,
+            rgba(255, 215, 255, 0) 0%,
+            rgba(225, 255, 255, 0.5) 20%,
+            rgba(255, 255, 255, 0) 61%
+          ),
+          linear-gradient(
+            rgb(97, 183, 217) 52%,
+            rgb(224, 246, 255) 60%,
+            rgb(61, 124, 191) 61%
+          );
+      }
+      #logo {
+        border-radius: 20%;
+        margin-left: 5px;
+      }
+      #main nav {
+        width: 60%;
+        background: linear-gradient(
+            to right,
+            rgba(255, 215, 255, 0) 0%,
+            rgba(225, 255, 255, 0.5) 20%,
+            rgba(255, 255, 255, 0) 61%
+          ),
+          linear-gradient(
+            rgb(97, 183, 217) 52%,
+            rgb(224, 246, 255) 60%,
+            rgb(61, 124, 191) 61%
+          );
+      }
+      #navbar {
+        padding: 0px 10px;
+        font-size: 20px;
+        display: flex;
+        font-weight: 500;
+        justify-content: space-evenly;
+        justify-items: center;
+        align-items: center;
+      }
+
+      #pages {
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main">
+      <div>
+        <img
+          id="logo"
+          width="50px"
+          height="50px"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyg0aP8lMEvra0ay_1ee2FuzoFqtbuTLNFxA&usqp=CAU"
+          alt=""
+        />
+        <h2>Expence Manager</h2>
+      </div>
+      <nav id="navbar">
+        <a id="pages" href="index.html">home</a>
+        <span></span>
+        <a id="pages" href="#">transactions</a>
+        <span></span>
+        <a id="pages" href="#">login</a>
+        <span></span>
+        <a id="pages" href="#">contact us</a>
+        <span></span>
+        <a id="pages" href="#">about</a>
+      </nav>
+    </div>
+  </body>
+</html>
