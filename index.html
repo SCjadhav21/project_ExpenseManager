@@ -4,28 +4,193 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Expence Manager</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #container {
+        display: flex;
+        padding: 7%;
+        background-color: #2049ad;
+      }
+      #container div:nth-child(1) {
+        width: 50%;
+
+        padding: 10px;
+      }
+      #container div:nth-child(2) {
+        width: 45%;
+      }
+      #heading {
+        font-family: "Courier New", Courier, monospace;
+        font-style: italic;
+        font-weight: 600;
+        color: azure;
+      }
+      #desc {
+        font-family: "Courier New", Courier, monospace;
+
+        font-weight: 400;
+        color: azure;
+      }
+      main h2 {
+        font-family: "Courier New", Courier, monospace;
+        font-style: italic;
+        font-weight: 500;
+        color: azure;
+      }
+      #loginbutton {
+        align-items: center;
+
+        background-image: radial-gradient(
+          100% 100% at 100% 0,
+          #5adaff 0,
+          #5468ff 100%
+        );
+        border: 0;
+        border-radius: 6px;
+        box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,
+          rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
+          rgba(58, 65, 111, 0.5) 0 -3px 0 inset;
+        box-sizing: border-box;
+        color: #fff;
+        cursor: pointer;
+        display: inline-flex;
+        font-family: "JetBrains Mono", monospace;
+        height: 48px;
+        justify-content: center;
+        line-height: 1;
+
+        overflow: hidden;
+        padding-left: 16px;
+        padding-right: 16px;
+
+        font-size: 18px;
+      }
+      #expencechart {
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
+      }
+      #navbarhtml {
+        height: 70px;
+        width: 100%;
+      }
+      #spacification {
+        padding: 20px;
+      }
+      #featureddiv {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        gap: 20px;
+        padding: 30px;
+        justify-content: space-evenly;
+        justify-items: center;
+      }
+      .grid-item {
+        border: 1px solid #dae2f5;
+        padding: 10%;
+        font-size: 30px;
+
+        text-align: left;
+      }
+      .grid-item img {
+        width: 20%;
+      }
+      .center {
+        text-align: center;
+        font-size: 40px;
+        color: #272365;
+        font-family: "Times New Roman", Times, serif;
+        font-weight: 500;
+      }
+
+      @media only screen and (max-width: 780px) {
+        #container {
+          display: block;
+        }
+        #container div:nth-child(1) {
+          width: 100%;
+        }
+        #container div:nth-child(2) {
+          width: 100%;
+        }
+        #navbarhtml {
+          height: 85px;
+        }
+        #featureddiv {
+          grid-template-columns: auto;
+        }
+      }
+    </style>
   </head>
   <body>
-    <embed type="text/html" src="navbar.html" height="100px" width="100%" />
-
-    <header>
-      <h1>Expense management for growing businesses</h1>
-      <h4>
-        Experience the convenience of simplified travel booking, faster expense
-        reporting, and effective cost control. With our Expense manager, take
-        the first step to revolutionize the way you manage travel and expense.
-      </h4>
-    </header>
-    <main>
-      <h2>expense management the easy way.</h2>
-      <button>Login To Start</button>
-    </main>
-    <section>
-      <img
-        src="https://www.zoho.com/expense/index/header-small.png?v=1"
-        alt="dummy expence chart"
-      />
-    </section>
+    <embed id="navbarhtml" type="text/html" src="navbar.html" />
+    <div id="container">
+      <div>
+        <header>
+          <h1 id="heading">Expense management for growing businesses</h1>
+          <h4 id="desc">
+            Experience the convenience of simplified travel booking, faster
+            expense reporting, and effective cost control. With our Expense
+            manager, take the first step to revolutionize the way you manage
+            travel and expense.
+          </h4>
+        </header>
+        <main>
+          <h2>Expense management the easy way.</h2>
+          <button id="loginbutton">Login To Start</button>
+        </main>
+      </div>
+      <div>
+        <section>
+          <img
+            id="expencechart"
+            width="100%"
+            src="https://www.zoho.com/expense/index/header-small.png?v=1"
+            alt="dummy expence chart"
+          />
+        </section>
+      </div>
+    </div>
+    <div id="spacification">
+      <header class="center">
+        What our Expense Manager brings to the table.
+      </header>
+      <div id="featureddiv">
+        <div class="grid-item">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/8654/8654390.png"
+            alt=""
+          />
+          <h2>Expence</h2>
+          <p>End-to-end expence reporting automation.</p>
+        </div>
+        <div class="grid-item">
+          <img
+            src="https://w7.pngwing.com/pngs/589/619/png-transparent-payment-gateway-payment-processor-computer-icons-e-commerce-payment-blue-angle-text.png"
+            alt=""
+          />
+          <h2>Payments</h2>
+          <p>Reimbursements and payments done right.</p>
+        </div>
+        <div class="grid-item">
+          <img
+            src="https://static.vecteezy.com/system/resources/previews/024/560/761/original/data-analytics-icon-monitoring-big-data-analysis-containing-database-free-png.png"
+            alt=""
+          />
+          <h2>Analytics</h2>
+          <p>Comprehensive travel and expence mangments analytics.</p>
+        </div>
+        <div class="grid-item">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/3882/3882227.png"
+            alt=""
+          />
+          <h2>Transactions</h2>
+          <p>Completed agreement between a buyer and a seller.</p>
+        </div>
+      </div>
+    </div>
     <footer>
       <h3>AVAILABLE ON</h3>
       <img
