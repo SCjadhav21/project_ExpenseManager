@@ -4,128 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Expence Manager</title>
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-      }
-      #container {
-        display: flex;
-        padding: 7%;
-        background-color: #2049ad;
-      }
-      #container div:nth-child(1) {
-        width: 50%;
-
-        padding: 10px;
-      }
-      #container div:nth-child(2) {
-        width: 45%;
-      }
-      #heading {
-        font-family: "Courier New", Courier, monospace;
-        font-style: italic;
-        font-weight: 600;
-        color: azure;
-      }
-      #desc {
-        font-family: "Courier New", Courier, monospace;
-
-        font-weight: 400;
-        color: azure;
-      }
-      main h2 {
-        font-family: "Courier New", Courier, monospace;
-        font-style: italic;
-        font-weight: 500;
-        color: azure;
-      }
-      #loginbutton {
-        align-items: center;
-
-        background-image: radial-gradient(
-          100% 100% at 100% 0,
-          #5adaff 0,
-          #5468ff 100%
-        );
-        border: 0;
-        border-radius: 6px;
-        box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,
-          rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
-          rgba(58, 65, 111, 0.5) 0 -3px 0 inset;
-        box-sizing: border-box;
-        color: #fff;
-        cursor: pointer;
-        display: inline-flex;
-        font-family: "JetBrains Mono", monospace;
-        height: 48px;
-        justify-content: center;
-        line-height: 1;
-
-        overflow: hidden;
-        padding-left: 16px;
-        padding-right: 16px;
-
-        font-size: 18px;
-      }
-      #expencechart {
-        box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
-      }
-      #navbarhtml {
-        height: 70px;
-        width: 100%;
-      }
-      #spacification {
-        padding: 20px;
-      }
-      #featureddiv {
-        display: grid;
-        grid-template-columns: auto auto auto;
-        gap: 20px;
-        padding: 30px;
-        justify-content: space-evenly;
-        justify-items: center;
-      }
-      .grid-item {
-        border: 1px solid #dae2f5;
-        padding: 10%;
-        font-size: 30px;
-
-        text-align: left;
-      }
-      .grid-item img {
-        width: 20%;
-      }
-      .center {
-        text-align: center;
-        font-size: 40px;
-        color: #272365;
-        font-family: "Times New Roman", Times, serif;
-        font-weight: 500;
-      }
-
-      @media only screen and (max-width: 780px) {
-        #container {
-          display: block;
-        }
-        #container div:nth-child(1) {
-          width: 100%;
-        }
-        #container div:nth-child(2) {
-          width: 100%;
-        }
-        #navbarhtml {
-          height: 85px;
-        }
-        #featureddiv {
-          grid-template-columns: auto;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="index.css" />
   </head>
   <body>
     <embed id="navbarhtml" type="text/html" src="navbar.html" />
-    <div id="container">
+    <div class="container">
       <div>
         <header>
           <h1 id="heading">Expense management for growing businesses</h1>
@@ -156,7 +39,7 @@
       <header class="center">
         What our Expense Manager brings to the table.
       </header>
-      <div id="featureddiv">
+      <div class="featureddiv">
         <div class="grid-item">
           <img
             src="https://cdn-icons-png.flaticon.com/512/8654/8654390.png"
@@ -191,18 +74,76 @@
         </div>
       </div>
     </div>
+    <div class="bluecontainer">
+      <header class="headcenter">Expence manager is extensible</header>
+      <div class="featureddiv">
+        <div class="grid-item">
+          <div class="flexBox">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJgechJzhq2z8tVDQ49pa_CMmQ_OLgrkVXDg&usqp=CAU"
+              alt=""
+            />
+            <h2>Automation</h2>
+          </div>
+          <p>
+            Set different expense reporting tasks to autopilot with features
+            like workflow rules, custom functions, and webhooks.
+          </p>
+        </div>
+        <div class="grid-item">
+          <div class="flexBox">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCKgOL6dkqzVuwzZgDhG5Yx-Lw2kykDAqsCQ&usqp=CAU"
+              alt=""
+            />
+            <h2>Customization</h2>
+          </div>
+          <p>
+            Tailor your expense management to suit your business needs. Create
+            custom components like buttons, links, and modules.
+          </p>
+        </div>
+        <div class="grid-item">
+          <div class="flexBox">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4oHmm8J-ghBgpKGf5sbxLjYUsLkWQ6KeUcQ&usqp=CAU"
+              alt=""
+            />
+            <h2>Collaboration</h2>
+          </div>
+          <p>
+            Siloed departments are a thing of the past. Communicate with
+            employees contextually and in real time via chat, comments, and
+            notifications.
+          </p>
+        </div>
+      </div>
+    </div>
     <footer>
-      <h3>AVAILABLE ON</h3>
-      <img
-        src="https://www.zoho.com/expense/common/app-store-small.png"
-        alt="apple store png"
-      />
-      <img
-        src="https://www.zoho.com/expense/common/google-play-small.png"
-        alt="play store png"
-      />
-      <a href="">home</a><a href="">about</a><a href="">contact</a
-      ><a href="">privacy policy</a>
+      <div>
+        <h3>AVAILABLE ON</h3>
+        <img
+          src="https://www.zoho.com/expense/common/app-store-small.png"
+          alt="apple store png"
+        />
+        <br />
+        <img
+          src="https://www.zoho.com/expense/common/google-play-small.png"
+          alt="play store png"
+        />
+      </div>
+      <div>
+        <h3>QUICK LINKS</h3>
+        <a href="">home</a>
+        <br />
+        <a href="">transactions</a>
+        <br />
+        <a href="">about</a>
+        <br />
+        <a href="">contact</a>
+        <br />
+        <a href="">privacy policy</a>
+      </div>
     </footer>
   </body>
 </html>
