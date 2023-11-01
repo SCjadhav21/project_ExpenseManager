@@ -3,6 +3,7 @@ body {
   padding: 0;
 }
 .container {
+  margin-top: -5px;
   display: flex;
   padding: 7%;
   background-color: #2049ad;
@@ -11,6 +12,10 @@ body {
   width: 50%;
 
   padding: 10px;
+}
+.quicklinks {
+  text-decoration: none;
+  color: #fff;
 }
 .container div:nth-child(2) {
   width: 45%;
