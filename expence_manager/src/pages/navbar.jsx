@@ -1,5 +1,6 @@
 import React from "react";
 import "../css/navbar.css";
+import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <div id="main">
@@ -14,25 +15,25 @@ const Navbar = () => {
         <h2>Expence Manager</h2>
       </div>
       <nav id="navbar">
-        <a id="pages" href="index.html">
+        <Link id="pages" to="/">
           home
-        </a>
+        </Link>
         <span></span>
-        <a id="pages" href="#">
+        <Link id="pages" to="/transactions">
           transactions
-        </a>
+        </Link>
         <span></span>
-        <a id="pages" href="#">
+        <Link id="pages" to="/overview">
           Overview
-        </a>
+        </Link>
         <span></span>
-        <a id="pages" href="#">
+        <Link id="pages" to="/login">
           login
-        </a>
+        </Link>
         <span></span>
-        <a id="pages" href="#">
+        <Link id="pages" to="/about">
           about
-        </a>
+        </Link>
       </nav>
     </div>
   );
