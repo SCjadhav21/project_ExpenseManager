@@ -6,7 +6,12 @@ const Transactions = () => {
   let [manageExpenceOpen, setManageExpenceOpen] = useState(false);
   return (
     <>
-      {manageExpenceOpen && <ManageExpence />}
+      {manageExpenceOpen && (
+        <ManageExpence
+          manageExpence={manageExpenceOpen}
+          setManageExpence={setManageExpenceOpen}
+        />
+      )}
       {!manageExpenceOpen && (
         <div style={{ margin: "30px" }}>
           <img

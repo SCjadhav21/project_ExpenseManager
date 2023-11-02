@@ -9,7 +9,7 @@ import {
 } from "react-icons/md";
 import { BsCheckCircleFill } from "react-icons/bs";
 import { GiLightningSpanner, GiForkKnifeSpoon } from "react-icons/gi";
-const ManageExpence = () => {
+const ManageExpence = ({ manageExpence, setManageExpence }) => {
   const [data, setData] = useState({
     amount: "",
     category: "",
@@ -29,12 +29,25 @@ const ManageExpence = () => {
     setData({ ...data, category: value });
     setCategory(value);
   };
-  console.log(data);
+  const handelSubmit = () => {
+    if (data.amount == "") {
+      alert("Please enter some amount");
+    } else if (data.category == "") {
+      alert("Please select a category");
+    } else if (data.date == "") {
+      alert("Please select a date");
+    } else if (data.description == "") {
+      alert("Please Add some description");
+    } else {
+      setManageExpence(!manageExpence);
+    }
+  };
   return (
     <div>
       <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
         <h3 style={{ fontSize: "40px", fontWeight: "lighter" }}>Amount :</h3>
         <input
+          min={1}
           name="amount"
           onChange={handelChange}
           value={data.amount}
@@ -68,13 +81,20 @@ const ManageExpence = () => {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-
+              color: data.category == "food&drinks" ? "white" : "black",
+              backgroundColor:
+                data.category == "food&drinks" ? "#07DA06" : "white",
               boxShadow:
                 "rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset",
               padding: "10px",
             }}
           >
-            <GiForkKnifeSpoon style={{ fontSize: "20px", color: "#07DA06" }} />
+            <GiForkKnifeSpoon
+              style={{
+                fontSize: "20px",
+                color: data.category == "food&drinks" ? "white" : "#07DA06",
+              }}
+            />
             <p>Food and Drinks</p>
           </div>
           <div
@@ -84,11 +104,19 @@ const ManageExpence = () => {
                 "rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset",
               padding: "10px",
               display: "flex",
+              color: data.category == "leisure" ? "white" : "black",
+              backgroundColor: data.category == "leisure" ? "#009EE1" : "white",
+
               flexDirection: "column",
               alignItems: "center",
             }}
           >
-            <IoMdHappy style={{ fontSize: "20px", color: "#009EE1" }} />
+            <IoMdHappy
+              style={{
+                fontSize: "20px",
+                color: data.category == "leisure" ? "white" : "#009EE1",
+              }}
+            />
             <p>Leisure</p>
           </div>
           <div
@@ -98,11 +126,20 @@ const ManageExpence = () => {
                 "rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset",
               padding: "10px",
               display: "flex",
+              color: data.category == "transportation" ? "white" : "black",
+              backgroundColor:
+                data.category == "transportation" ? "orange" : "white",
+
               flexDirection: "column",
               alignItems: "center",
             }}
           >
-            <IoMdBicycle style={{ fontSize: "25px", color: "orange" }} />
+            <IoMdBicycle
+              style={{
+                fontSize: "25px",
+                color: data.category == "transportation" ? "white" : "orange",
+              }}
+            />
             <p>Transportation</p>
           </div>
           <div
@@ -112,11 +149,19 @@ const ManageExpence = () => {
                 "rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset",
               padding: "10px",
               display: "flex",
+              color: data.category == "health" ? "white" : "black",
+              backgroundColor: data.category == "health" ? "red" : "white",
+
               flexDirection: "column",
               alignItems: "center",
             }}
           >
-            <MdHealthAndSafety style={{ fontSize: "25px", color: "red" }} />
+            <MdHealthAndSafety
+              style={{
+                fontSize: "25px",
+                color: data.category == "health" ? "white" : "red",
+              }}
+            />
             <p>Health</p>
           </div>
           <div
@@ -126,11 +171,20 @@ const ManageExpence = () => {
                 "rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset",
               padding: "10px",
               display: "flex",
+              color: data.category == "shooping" ? "white" : "black",
+              backgroundColor:
+                data.category == "shooping" ? "#CA13C9" : "white",
+
               flexDirection: "column",
               alignItems: "center",
             }}
           >
-            <MdShoppingCart style={{ fontSize: "25px", color: "#CA13C9" }} />
+            <MdShoppingCart
+              style={{
+                fontSize: "25px",
+                color: data.category == "shooping" ? "white" : "#CA13C9",
+              }}
+            />
 
             <p>Shooping</p>
           </div>
@@ -141,12 +195,19 @@ const ManageExpence = () => {
                 "rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset",
               padding: "10px",
               display: "flex",
+              color: data.category == "utilities" ? "white" : "black",
+              backgroundColor:
+                data.category == "utilities" ? "#EE228F" : "white",
+
               flexDirection: "column",
               alignItems: "center",
             }}
           >
             <GiLightningSpanner
-              style={{ fontSize: "25px", color: "#F5BBB9" }}
+              style={{
+                fontSize: "25px",
+                color: data.category == "utilities" ? "white" : "#EE228F",
+              }}
             />
 
             <p>Utilities</p>
@@ -179,6 +240,7 @@ const ManageExpence = () => {
           </div>
         </div>
         <BsCheckCircleFill
+          onClick={handelSubmit}
           style={{
             display: "block",
             margin: "auto",
