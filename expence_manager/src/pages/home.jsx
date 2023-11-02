@@ -1,5 +1,6 @@
 import React from "react";
 import "../css/home.css";
+import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <>
@@ -130,25 +131,26 @@ const Home = () => {
         </div>
         <div>
           <h3>QUICK LINKS</h3>
-          <a className="quicklinks" href="">
+
+          <Link className="quicklinks" to="/">
             home
-          </a>
+          </Link>
           <br />
-          <a className="quicklinks" href="">
+          <Link className="quicklinks" to="/transactions">
             transactions
-          </a>
+          </Link>
           <br />
-          <a className="quicklinks" href="">
+          <Link className="quicklinks" to="/overview">
+            Overview
+          </Link>
+          <br />
+          <Link className="quicklinks" to="/login">
+            login
+          </Link>
+          <br />
+          <Link className="quicklinks" to="/about">
             about
-          </a>
-          <br />
-          <a className="quicklinks" href="">
-            contact
-          </a>
-          <br />
-          <a className="quicklinks" href="">
-            privacy policy
-          </a>
+          </Link>
         </div>
       </footer>
     </>
