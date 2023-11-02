@@ -1,0 +1,44 @@
+.amountInput {
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  border: none;
+  width: 150px;
+  height: 60px;
+
+  font-size: 30px;
+  text-align: center;
+}
+.fontcss {
+  font-size: 40px;
+  font-weight: lighter;
+}
+.category-grid {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
+  gap: 15px;
+}
+.category-grid-item {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.icon-font-size {
+  font-size: 30px;
+}
+.flex-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.check-icon {
+  display: block;
+  margin: auto;
+  margin-right: 10px;
+  font-size: 80px;
+  cursor: pointer;
+  color: #07da06;
+}

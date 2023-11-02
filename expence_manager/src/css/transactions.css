@@ -1,0 +1,14 @@
+.no-transaction-img {
+  display: block;
+  margin: auto;
+  width: 60%;
+  height: 60vh;
+}
+.Add-Circle {
+  display: block;
+  margin: auto;
+  margin-right: 10px;
+  font-size: 80px;
+  cursor: pointer;
+  color: #07da06;
+}

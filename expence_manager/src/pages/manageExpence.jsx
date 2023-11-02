@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import "../css/manageexpence.css";
 import { IoMdHappy, IoMdBicycle } from "react-icons/io";
 import {
   MdHealthAndSafety,
@@ -44,54 +44,33 @@ const ManageExpence = ({ manageExpence, setManageExpence }) => {
   };
   return (
     <div>
-      <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-        <h3 style={{ fontSize: "40px", fontWeight: "lighter" }}>Amount :</h3>
+      <div className="flex-container">
+        <h3 className="fontcss">Amount :</h3>
         <input
           min={1}
           name="amount"
           onChange={handelChange}
           value={data.amount}
-          style={{
-            boxShadow:
-              "rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px",
-            border: "none",
-            width: "150px",
-            height: "60px",
-
-            fontSize: "30px",
-            textAlign: "center",
-          }}
+          className="amountInput"
           type="number"
         />
         <h3 style={{ fontSize: "40px" }}>₹</h3>
       </div>
       <div>
-        <h3 style={{ fontSize: "40px", fontWeight: "lighter" }}>category</h3>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "auto auto auto",
-            padding: "10px",
-            gap: 10,
-          }}
-        >
+        <h3 className="fontcss">category</h3>
+        <div className="category-grid">
           <div
             onClick={() => handelCategory("food&drinks")}
             style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
               color: data.category == "food&drinks" ? "white" : "black",
               backgroundColor:
                 data.category == "food&drinks" ? "#07DA06" : "white",
-              boxShadow:
-                "rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset",
-              padding: "10px",
             }}
+            className="category-grid-item"
           >
             <GiForkKnifeSpoon
+              className="icon-font-size"
               style={{
-                fontSize: "20px",
                 color: data.category == "food&drinks" ? "white" : "#07DA06",
               }}
             />
@@ -100,20 +79,14 @@ const ManageExpence = ({ manageExpence, setManageExpence }) => {
           <div
             onClick={() => handelCategory("leisure")}
             style={{
-              boxShadow:
-                "rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset",
-              padding: "10px",
-              display: "flex",
               color: data.category == "leisure" ? "white" : "black",
               backgroundColor: data.category == "leisure" ? "#009EE1" : "white",
-
-              flexDirection: "column",
-              alignItems: "center",
             }}
+            className="category-grid-item"
           >
             <IoMdHappy
+              className="icon-font-size"
               style={{
-                fontSize: "20px",
                 color: data.category == "leisure" ? "white" : "#009EE1",
               }}
             />
@@ -122,21 +95,15 @@ const ManageExpence = ({ manageExpence, setManageExpence }) => {
           <div
             onClick={() => handelCategory("transportation")}
             style={{
-              boxShadow:
-                "rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset",
-              padding: "10px",
-              display: "flex",
               color: data.category == "transportation" ? "white" : "black",
               backgroundColor:
                 data.category == "transportation" ? "orange" : "white",
-
-              flexDirection: "column",
-              alignItems: "center",
             }}
+            className="category-grid-item"
           >
             <IoMdBicycle
+              className="icon-font-size"
               style={{
-                fontSize: "25px",
                 color: data.category == "transportation" ? "white" : "orange",
               }}
             />
@@ -145,20 +112,14 @@ const ManageExpence = ({ manageExpence, setManageExpence }) => {
           <div
             onClick={() => handelCategory("health")}
             style={{
-              boxShadow:
-                "rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset",
-              padding: "10px",
-              display: "flex",
               color: data.category == "health" ? "white" : "black",
               backgroundColor: data.category == "health" ? "red" : "white",
-
-              flexDirection: "column",
-              alignItems: "center",
             }}
+            className="category-grid-item"
           >
             <MdHealthAndSafety
+              className="icon-font-size"
               style={{
-                fontSize: "25px",
                 color: data.category == "health" ? "white" : "red",
               }}
             />
@@ -167,21 +128,15 @@ const ManageExpence = ({ manageExpence, setManageExpence }) => {
           <div
             onClick={() => handelCategory("shooping")}
             style={{
-              boxShadow:
-                "rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset",
-              padding: "10px",
-              display: "flex",
               color: data.category == "shooping" ? "white" : "black",
               backgroundColor:
                 data.category == "shooping" ? "#CA13C9" : "white",
-
-              flexDirection: "column",
-              alignItems: "center",
             }}
+            className="category-grid-item"
           >
             <MdShoppingCart
+              className="icon-font-size"
               style={{
-                fontSize: "25px",
                 color: data.category == "shooping" ? "white" : "#CA13C9",
               }}
             />
@@ -191,21 +146,15 @@ const ManageExpence = ({ manageExpence, setManageExpence }) => {
           <div
             onClick={() => handelCategory("utilities")}
             style={{
-              boxShadow:
-                "rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset",
-              padding: "10px",
-              display: "flex",
               color: data.category == "utilities" ? "white" : "black",
               backgroundColor:
                 data.category == "utilities" ? "#EE228F" : "white",
-
-              flexDirection: "column",
-              alignItems: "center",
             }}
+            className="category-grid-item"
           >
             <GiLightningSpanner
+              className="icon-font-size"
               style={{
-                fontSize: "25px",
                 color: data.category == "utilities" ? "white" : "#EE228F",
               }}
             />
@@ -214,11 +163,14 @@ const ManageExpence = ({ manageExpence, setManageExpence }) => {
           </div>
         </div>
       </div>
-      <h3 style={{ fontSize: "40px", fontWeight: "lighter" }}>details</h3>
-      <div style={{ display: "flex", alignItems: "center" }}>
+      <h3 className="fontcss">details</h3>
+      <div className="flex-container">
         <div style={{ width: "80%" }}>
-          <div>
-            <MdDateRange style={{ fontSize: "25px", color: "#9400F7" }} />
+          <div className="flex-container">
+            <MdDateRange
+              className="icon-font-size"
+              style={{ color: "#9400F7", marginLeft: "5px" }}
+            />
             <input
               onChange={handelChange}
               style={{ margin: "5px" }}
@@ -227,29 +179,22 @@ const ManageExpence = ({ manageExpence, setManageExpence }) => {
               value={data.date}
             />
           </div>
-          <div>
-            <MdSpeakerNotes style={{ fontSize: "25px", color: "#81D0B6" }} />
+          <div className="flex-container">
+            <MdSpeakerNotes
+              className="icon-font-size"
+              style={{ color: "#8C00E9", marginLeft: "5px" }}
+            />
             <input
               onChange={handelChange}
               value={data.description}
-              style={{ margin: "5px" }}
+              style={{ marginTop: "5px" }}
               type="text"
               placeholder="Add note here..."
               name="description"
             />
           </div>
         </div>
-        <BsCheckCircleFill
-          onClick={handelSubmit}
-          style={{
-            display: "block",
-            margin: "auto",
-            marginRight: "10px",
-            fontSize: "80px",
-            cursor: "pointer",
-            color: "#07DA06",
-          }}
-        />
+        <BsCheckCircleFill onClick={handelSubmit} className="check-icon" />
       </div>
     </div>
   );
