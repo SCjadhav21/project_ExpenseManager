@@ -1,18 +1,19 @@
 import React, { useState } from "react";
-import "../css/manageexpence.css";
-import { IoMdHappy, IoMdBicycle } from "react-icons/io";
+import "../css/manageIncome.css";
+import { FaCcVisa, FaHome, FaRupeeSign } from "react-icons/fa";
 import {
-  MdHealthAndSafety,
+  MdOutlineCreditScore,
   MdSpeakerNotes,
   MdDateRange,
-  MdShoppingCart,
 } from "react-icons/md";
+import { BsPersonWorkspace } from "react-icons/bs";
+import { SlOptions } from "react-icons/sl";
 import { BsCheckCircleFill } from "react-icons/bs";
-import { GiLightningSpanner, GiForkKnifeSpoon } from "react-icons/gi";
-const ManageExpence = ({ manageExpence, setManageExpence }) => {
+const ManageIncome = ({ manageIncome, setManageIncome }) => {
   const [data, setData] = useState({
     amount: "",
-    category: "",
+    receivedBy: "",
+    paymentSource: "",
     date: "",
     description: "",
   });
@@ -24,20 +25,25 @@ const ManageExpence = ({ manageExpence, setManageExpence }) => {
     }
     setData({ ...data, [name]: value });
   };
-  const handelCategory = (value) => {
-    setData({ ...data, category: value });
+  const handelReceivedBy = (value) => {
+    setData({ ...data, receivedBy: value });
+  };
+  const handelPaymentSource = (value) => {
+    setData({ ...data, paymentSource: value });
   };
   const handelSubmit = () => {
     if (data.amount == "") {
       alert("Please enter some amount");
-    } else if (data.category == "") {
-      alert("Please select a category");
+    } else if (data.receivedBy == "") {
+      alert("Please select a payment received method");
+    } else if (data.paymentSource == "") {
+      alert("Please select a payment source");
     } else if (data.date == "") {
       alert("Please select a date");
     } else if (data.description == "") {
       alert("Please Add some description");
     } else {
-      setManageExpence(!manageExpence);
+      setManageIncome(!manageIncome);
     }
   };
   return (
@@ -55,109 +61,113 @@ const ManageExpence = ({ manageExpence, setManageExpence }) => {
         <h3 style={{ fontSize: "40px" }}>₹</h3>
       </div>
       <div>
-        <h3 className="fontcss">category</h3>
+        <h3 className="fontcss">Payment Received By</h3>
         <div className="category-grid">
           <div
-            onClick={() => handelCategory("food&drinks")}
+            onClick={() => handelReceivedBy("credit")}
             style={{
-              color: data.category == "food&drinks" ? "white" : "black",
+              color: data.receivedBy == "credit" ? "white" : "black",
               backgroundColor:
-                data.category == "food&drinks" ? "#07DA06" : "white",
+                data.receivedBy == "credit" ? "#07DA06" : "white",
             }}
             className="category-grid-item"
           >
-            <GiForkKnifeSpoon
+            <MdOutlineCreditScore
               className="icon-font-size"
               style={{
-                color: data.category == "food&drinks" ? "white" : "#07DA06",
+                color: data.receivedBy == "credit" ? "white" : "#07DA06",
               }}
             />
-            <p>Food and Drinks</p>
+            <p>Credit Card</p>
           </div>
           <div
-            onClick={() => handelCategory("leisure")}
+            onClick={() => handelReceivedBy("debit")}
             style={{
-              color: data.category == "leisure" ? "white" : "black",
-              backgroundColor: data.category == "leisure" ? "#009EE1" : "white",
+              color: data.receivedBy == "debit" ? "white" : "black",
+              backgroundColor: data.receivedBy == "debit" ? "#009EE1" : "white",
             }}
             className="category-grid-item"
           >
-            <IoMdHappy
+            <FaCcVisa
               className="icon-font-size"
               style={{
-                color: data.category == "leisure" ? "white" : "#009EE1",
+                color: data.receivedBy == "debit" ? "white" : "#009EE1",
               }}
             />
-            <p>Leisure</p>
+            <p>Debit Card</p>
           </div>
           <div
-            onClick={() => handelCategory("transportation")}
+            onClick={() => handelReceivedBy("cash")}
             style={{
-              color: data.category == "transportation" ? "white" : "black",
+              color: data.receivedBy == "cash" ? "white" : "black",
+              backgroundColor: data.receivedBy == "cash" ? "orange" : "white",
+            }}
+            className="category-grid-item"
+          >
+            <FaRupeeSign
+              className="icon-font-size"
+              style={{
+                color: data.receivedBy == "cash" ? "white" : "orange",
+              }}
+            />
+            <p>Cash</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 className="fontcss">Payment Source</h3>
+        <div className="category-grid">
+          <div
+            onClick={() => handelPaymentSource("Job")}
+            style={{
+              color: data.paymentSource == "Job" ? "white" : "black",
+              backgroundColor: data.paymentSource == "Job" ? "red" : "white",
+            }}
+            className="category-grid-item"
+          >
+            <BsPersonWorkspace
+              className="icon-font-size"
+              style={{
+                color: data.paymentSource == "Job" ? "white" : "red",
+              }}
+            />
+            <p>Job</p>
+          </div>
+          <div
+            onClick={() => handelPaymentSource("home")}
+            style={{
+              color: data.paymentSource == "home" ? "white" : "black",
               backgroundColor:
-                data.category == "transportation" ? "orange" : "white",
+                data.paymentSource == "home" ? "#CA13C9" : "white",
             }}
             className="category-grid-item"
           >
-            <IoMdBicycle
+            <FaHome
               className="icon-font-size"
               style={{
-                color: data.category == "transportation" ? "white" : "orange",
-              }}
-            />
-            <p>Transportation</p>
-          </div>
-          <div
-            onClick={() => handelCategory("health")}
-            style={{
-              color: data.category == "health" ? "white" : "black",
-              backgroundColor: data.category == "health" ? "red" : "white",
-            }}
-            className="category-grid-item"
-          >
-            <MdHealthAndSafety
-              className="icon-font-size"
-              style={{
-                color: data.category == "health" ? "white" : "red",
-              }}
-            />
-            <p>Health</p>
-          </div>
-          <div
-            onClick={() => handelCategory("shooping")}
-            style={{
-              color: data.category == "shooping" ? "white" : "black",
-              backgroundColor:
-                data.category == "shooping" ? "#CA13C9" : "white",
-            }}
-            className="category-grid-item"
-          >
-            <MdShoppingCart
-              className="icon-font-size"
-              style={{
-                color: data.category == "shooping" ? "white" : "#CA13C9",
+                color: data.paymentSource == "home" ? "white" : "#CA13C9",
               }}
             />
 
-            <p>Shooping</p>
+            <p>Home</p>
           </div>
           <div
-            onClick={() => handelCategory("utilities")}
+            onClick={() => handelPaymentSource("other")}
             style={{
-              color: data.category == "utilities" ? "white" : "black",
+              color: data.paymentSource == "other" ? "white" : "black",
               backgroundColor:
-                data.category == "utilities" ? "#EE228F" : "white",
+                data.paymentSource == "other" ? "#EE228F" : "white",
             }}
             className="category-grid-item"
           >
-            <GiLightningSpanner
+            <SlOptions
               className="icon-font-size"
               style={{
-                color: data.category == "utilities" ? "white" : "#EE228F",
+                color: data.paymentSource == "other" ? "white" : "#EE228F",
               }}
             />
 
-            <p>Utilities</p>
+            <p>Other</p>
           </div>
         </div>
       </div>
@@ -198,4 +208,4 @@ const ManageExpence = ({ manageExpence, setManageExpence }) => {
   );
 };
 
-export default ManageExpence;
+export default ManageIncome;
