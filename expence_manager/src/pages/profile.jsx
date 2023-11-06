@@ -5,9 +5,11 @@ import "../css/profile.css";
 const Profile = () => {
   const { auth, userData, logOutUser } = useContext(AuthContext);
   const navigate = useNavigate();
+  // navigate to the login page
   if (!auth) {
     navigate("/login");
   }
+
   return (
     <div class="profile">
       <div class="profile-image">
