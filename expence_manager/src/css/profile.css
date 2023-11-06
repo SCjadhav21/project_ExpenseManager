@@ -1,0 +1,39 @@
+.profile {
+  width: 300px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.profile img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+.name {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+.email {
+  color: #555;
+  font-size: 16px;
+}
+.logout-button {
+  background-color: #ff5733;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-top: 10px;
+  width: 200px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+.logout-button:hover {
+  background-color: #e74c3c;
+}

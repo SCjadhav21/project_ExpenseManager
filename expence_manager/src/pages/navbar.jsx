@@ -1,7 +1,17 @@
 import React from "react";
 import "../css/navbar.css";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 const Navbar = () => {
+  const { auth, userData } = useContext(AuthContext);
+  console.log(userData, auth);
+  const getUserName = () => {
+    let words = userData.name.split(" ");
+    let firstLetters = words.map((word) => word.charAt(0));
+    let result = firstLetters.join("");
+    return result;
+  };
   return (
     <div id="main">
       <div>
@@ -27,9 +37,16 @@ const Navbar = () => {
           Overview
         </Link>
         <span></span>
-        <Link id="pages" to="/login">
-          login
-        </Link>
+        {!auth && (
+          <Link id="pages" to="/login">
+            login
+          </Link>
+        )}
+        {auth && (
+          <Link id="pages" className="user-name" to="/profile">
+            {getUserName()}
+          </Link>
+        )}
         <span></span>
         <Link id="pages" to="/about">
           about

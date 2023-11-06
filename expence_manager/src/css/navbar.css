@@ -24,6 +24,13 @@ body {
       rgb(61, 124, 191) 61%
     );
 }
+.user-name {
+  border-radius: 50%;
+  padding: 5px 10px;
+
+  background-color: #2049ad;
+  color: #ffffff;
+}
 #logo {
   border-radius: 20%;
   margin-left: 5px;
