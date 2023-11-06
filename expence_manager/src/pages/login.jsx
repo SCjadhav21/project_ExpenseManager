@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "../css/login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 const Login = () => {
+  const { auth, loginUser } = useContext(AuthContext);
+  const navigate = useNavigate();
   let [userData, setUserData] = useState({
     email: "",
     password: "",
@@ -13,7 +16,17 @@ const Login = () => {
   const handelSubmit = (e) => {
     e.preventDefault();
     alert("all data has been submitted");
+    loginUser({
+      email: userData.email,
+      name: "Suraj Jadhav",
+      mobile: "8398293802",
+      token: "osauoduowodwebdheiwu125652621",
+    });
+    navigate("/");
   };
+  if (auth) {
+    navigate("/");
+  }
   return (
     <div>
       {" "}

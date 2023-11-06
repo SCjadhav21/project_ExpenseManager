@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../css/home.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 const Home = () => {
+  const { auth } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handelViewPage = () => {
+    auth ? navigate("/transactions") : navigate("login");
+  };
   return (
     <>
       {" "}
@@ -18,7 +25,9 @@ const Home = () => {
           </header>
           <main>
             <h2>Expense management the easy way.</h2>
-            <button id="loginbutton">Login To Start</button>
+            <button id="loginbutton" onClick={handelViewPage}>
+              {auth ? "Show My Expence" : "Login To Start"}
+            </button>
           </main>
         </div>
         <div>
