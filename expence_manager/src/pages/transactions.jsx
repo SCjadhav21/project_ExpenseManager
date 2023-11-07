@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { IoIosAddCircle } from "react-icons/io";
-import ManageExpence from "./manageExpence";
+import ManageExpense from "./manageExpense";
 import "../css/transactions.css";
 import ManageIncome from "./manageincome";
 const Transactions = () => {
-  let [manageExpenceOpen, setManageExpenceOpen] = useState(false);
+  let [manageExpenseOpen, setManageExpenseOpen] = useState(false);
   let [manageIncomeOpen, setManageIncomeOpen] = useState(false);
   return (
     <>
@@ -14,13 +13,13 @@ const Transactions = () => {
           setManageIncome={setManageIncomeOpen}
         />
       )}
-      {manageExpenceOpen && (
-        <ManageExpence
-          manageExpence={manageExpenceOpen}
-          setManageExpence={setManageExpenceOpen}
+      {manageExpenseOpen && (
+        <ManageExpense
+          manageExpense={manageExpenseOpen}
+          setManageExpense={setManageExpenseOpen}
         />
       )}
-      {!manageExpenceOpen && !manageIncomeOpen && (
+      {!manageExpenseOpen && !manageIncomeOpen && (
         <div style={{ margin: "30px" }}>
           <img
             className="no-transaction-img"
@@ -40,12 +39,12 @@ const Transactions = () => {
             </button>
             <button
               onClick={() => {
-                setManageExpenceOpen(!manageExpenceOpen);
+                setManageExpenseOpen(!manageExpenseOpen);
               }}
-              className=" button-css button-expence"
+              className=" button-css button-expense"
               role="button"
             >
-              <span class="text">Add Expence</span>
+              <span class="text">Add Expense</span>
             </button>
           </div>
         </div>

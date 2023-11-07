@@ -22,7 +22,7 @@ const Navbar = () => {
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyg0aP8lMEvra0ay_1ee2FuzoFqtbuTLNFxA&usqp=CAU"
           alt=""
         />
-        <h2>Expence Manager</h2>
+        <h2>Expense Manager</h2>
       </div>
       <nav id="navbar">
         <Link id="pages" to="/">

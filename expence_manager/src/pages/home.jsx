@@ -17,26 +17,26 @@ const Home = () => {
           <header>
             <h1 id="heading">Expense management for growing businesses</h1>
             <h4 id="desc">
-              Experience the convenience of simplified travel booking, faster
-              expense reporting, and effective cost control. With our Expense
-              manager, take the first step to revolutionize the way you manage
-              travel and expense.
+              Experience the convenience of simplified expense reporting, faster
+              processing, and effective cost control. With our Expense manager,
+              take the first step to revolutionize the way you gain an overview
+              of your financial data with graphical representations...
             </h4>
           </header>
           <main>
             <h2>Expense management the easy way.</h2>
             <button id="loginbutton" onClick={handelViewPage}>
-              {auth ? "Show My Expence" : "Login To Start"}
+              {auth ? "Show My Expense" : "Login To Start"}
             </button>
           </main>
         </div>
         <div>
           <section>
             <img
-              id="expencechart"
+              id="expensechart"
               width="100%"
               src="https://www.zoho.com/expense/index/header-small.png?v=1"
-              alt="dummy expence chart"
+              alt="dummy expense chart"
             />
           </section>
         </div>
@@ -51,8 +51,8 @@ const Home = () => {
               src="https://cdn-icons-png.flaticon.com/512/8654/8654390.png"
               alt=""
             />
-            <h2>Expence</h2>
-            <p>End-to-end expence reporting automation.</p>
+            <h2>Expense</h2>
+            <p>End-to-end expense reporting automation.</p>
           </div>
           <div className="grid-item">
             <img
@@ -68,7 +68,7 @@ const Home = () => {
               alt=""
             />
             <h2>Analytics</h2>
-            <p>Comprehensive travel and expence mangments analytics.</p>
+            <p>Comprehensive income and expense mangments analytics.</p>
           </div>
           <div className="grid-item">
             <img
@@ -76,12 +76,12 @@ const Home = () => {
               alt=""
             />
             <h2>Transactions</h2>
-            <p>Completed agreement between a buyer and a seller.</p>
+            <p>Completed agreement between a user and expense manager.</p>
           </div>
         </div>
       </div>
       <div className="bluecontainer">
-        <header className="headcenter">Expence manager is extensible</header>
+        <header className="headcenter">Expense manager is extensible</header>
         <div className="featureddiv">
           <div className="grid-item">
             <div className="flexBox">
@@ -92,8 +92,8 @@ const Home = () => {
               <h2>Automation</h2>
             </div>
             <p>
-              Set different expense reporting tasks to autopilot with features
-              like workflow rules, custom functions, and webhooks.
+              Set different expense reporting and income reporting features like
+              workflow rules, custom income, and expense.
             </p>
           </div>
           <div className="grid-item">
@@ -106,7 +106,7 @@ const Home = () => {
             </div>
             <p>
               Tailor your expense management to suit your business needs. Create
-              custom components like buttons, links, and modules.
+              custom income and expense graphs, links, and modules.
             </p>
           </div>
           <div className="grid-item">
