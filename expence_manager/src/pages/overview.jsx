@@ -14,7 +14,7 @@ const Overview = () => {
     ],
     datasets: [
       {
-        label: "Expence by Category",
+        label: "Expense by Category",
         data: [300, 50, 100, 150, 350, 150],
         backgroundColor: [
           "#0BC80E",

@@ -24,7 +24,7 @@ const Signup = () => {
   };
   return (
     <div>
-      <h1 id="h1">Expence Manager</h1>
+      <h1 id="h1">Expense Manager</h1>
       <form onSubmit={handelSubmit}>
         <h2>Sign Up</h2>
         <p>Full Name</p>
