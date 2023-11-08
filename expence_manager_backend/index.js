@@ -1,6 +1,6 @@
 const mysql = require("mysql");
 require("dotenv").config();
-
+// connection
 const connection = mysql.createConnection(process.env.mysqlUrl);
 
 connection.connect((err) => {
