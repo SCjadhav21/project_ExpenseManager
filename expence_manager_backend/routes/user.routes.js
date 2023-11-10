@@ -1,6 +1,7 @@
 const express = require("express");
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
+const { Auth } = require("../middelware/authentication");
 const UserRoutes = express.Router();
 
 UserRoutes.get("/users", async (req, res) => {
@@ -12,6 +13,7 @@ UserRoutes.get("/users", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
+
 UserRoutes.post("/register", async (req, res) => {
   const { username, mobile, password, email } = req.body;
 
