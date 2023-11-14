@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../css/signup.css";
+import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 const Signup = () => {
   const navigate = useNavigate();
@@ -13,13 +14,37 @@ const Signup = () => {
     let { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
   };
+
   const handelSubmit = (e) => {
     e.preventDefault();
     if (userData.mobile.length !== 10) {
       alert("Please enter valid mobile number");
     } else {
-      alert("all data has been submitted");
-      navigate("/login");
+      axios("http://localhost:4500/user/register", {
+        method: "POST",
+        data: userData,
+        headers: {
+          "content-type": "application/json",
+        },
+      })
+        .then((res) => {
+          if (res.status === 201) {
+            alert(
+              "Registration successfull, We've created your account for you."
+            );
+            navigate("/login");
+          } else {
+            alert(
+              "Acount has been Already Regestered, Please Login to account or Create with new Email."
+            );
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          alert(
+            "Registration failed, Please Login to account or Create with new Email"
+          );
+        });
     }
   };
   return (

@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import "../css/login.css";
+import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 const Login = () => {
@@ -15,15 +16,39 @@ const Login = () => {
   };
   const handelSubmit = (e) => {
     e.preventDefault();
-    alert("all data has been submitted");
-    loginUser({
-      email: userData.email,
-      name: "Suraj Jadhav",
-      mobile: "8398293802",
-      token: "osauoduowodwebdheiwu125652621",
-    });
-    navigate("/");
+    if (userData.email && userData.password) {
+      axios(" http://localhost:4500/user/login", {
+        method: "POST",
+        data: userData,
+        headers: {
+          "content-type": "application/json",
+        },
+      })
+        .then((res) => {
+          console.log(res);
+          if (res.status === 201) {
+            alert("Login Successfull, You've Logged In your account.");
+
+            loginUser({
+              email: res.data.email,
+              name: res.data.name,
+              mobile: res.data.mobile,
+              token: res.data.token,
+            });
+            navigate("/");
+          } else {
+            alert("Wrong Credentials, Please Check your Email or Password.");
+          }
+        })
+        .catch((err) => {
+          alert("Error: " + err);
+          console.log(err);
+        });
+    } else {
+      alert("Some filed are Empty, Please fill all the fields");
+    }
   };
+
   if (auth) {
     navigate("/");
   }

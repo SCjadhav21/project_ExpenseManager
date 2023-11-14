@@ -18,8 +18,9 @@ const Profile = () => {
           alt="Profile Image"
         />
       </div>
-      <div class="name">{userData.name}</div>
+      <div class="name">{userData.name.toUpperCase()}</div>
       <div class="email">{userData.email}</div>
+      <div class="email">Mobile: {userData.mobile}</div>
       <button class="logout-button" onClick={logOutUser}>
         Logout
       </button>
