@@ -5,12 +5,12 @@ import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 const Navbar = () => {
   const { auth, userData } = useContext(AuthContext);
-  console.log(userData, auth);
+
   const getUserName = () => {
     let words = userData.name.split(" ");
     let firstLetters = words.map((word) => word.charAt(0));
     let result = firstLetters.join("");
-    return result;
+    return result.toUpperCase();
   };
   return (
     <div id="main">

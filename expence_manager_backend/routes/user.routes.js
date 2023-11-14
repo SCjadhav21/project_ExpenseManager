@@ -15,7 +15,7 @@ UserRoutes.get("/users", async (req, res) => {
 });
 
 UserRoutes.post("/register", async (req, res) => {
-  const { username, mobile, password, email } = req.body;
+  const { name, mobile, password, email } = req.body;
 
   try {
     const [users] = await req.db.execute(
@@ -28,7 +28,7 @@ UserRoutes.post("/register", async (req, res) => {
     } else {
       const insertQuery =
         "INSERT INTO users (username, mobile, email, password) VALUES (?, ?, ?, ?)";
-      await req.db.execute(insertQuery, [username, mobile, email, password]);
+      await req.db.execute(insertQuery, [name, mobile, email, password]);
 
       res.status(201).send("User registered successfully");
     }
@@ -51,10 +51,11 @@ UserRoutes.post("/login", async (req, res) => {
       if (user.password === password) {
         const token = jwt.sign({ userId: user.id }, process.env.key);
 
-        res.status(200).send({
+        res.status(201).send({
           msg: "Login successful",
           name: user.username,
           email: user.email,
+          mobile: user.mobile,
           token: token,
         });
       } else {
