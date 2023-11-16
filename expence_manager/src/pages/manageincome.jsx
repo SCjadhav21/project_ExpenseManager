@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "../css/manageIncome.css";
 import { FaCcVisa, FaHome, FaRupeeSign } from "react-icons/fa";
 import {
@@ -6,10 +6,13 @@ import {
   MdSpeakerNotes,
   MdDateRange,
 } from "react-icons/md";
+import axios from "axios";
 import { BsPersonWorkspace } from "react-icons/bs";
 import { SlOptions } from "react-icons/sl";
 import { BsCheckCircleFill } from "react-icons/bs";
+import { AuthContext } from "../context/AuthContext";
 const ManageIncome = ({ manageIncome, setManageIncome }) => {
+  const { userData } = useContext(AuthContext);
   const [data, setData] = useState({
     amount: "",
     receivedBy: "",
@@ -43,7 +46,26 @@ const ManageIncome = ({ manageIncome, setManageIncome }) => {
     } else if (data.description == "") {
       alert("Please Add some description");
     } else {
-      setManageIncome(!manageIncome);
+      axios("http://localhost:4500/income/addincome", {
+        method: "POST",
+        data: data,
+        headers: {
+          "content-type": "application/json",
+          Authorization: userData.token,
+        },
+      })
+        .then((res) => {
+          if (res.status == 201) {
+            alert("Income Added successfully!");
+            setManageIncome(!manageIncome);
+          } else {
+            alert("Error while creating income");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          alert(err.message);
+        });
     }
   };
   return (

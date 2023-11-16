@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "../css/manageexpense.css";
 import { IoMdHappy, IoMdBicycle } from "react-icons/io";
 import {
@@ -7,9 +7,12 @@ import {
   MdDateRange,
   MdShoppingCart,
 } from "react-icons/md";
+import axios from "axios";
 import { BsCheckCircleFill } from "react-icons/bs";
 import { GiLightningSpanner, GiForkKnifeSpoon } from "react-icons/gi";
+import { AuthContext } from "../context/AuthContext";
 const ManageExpense = ({ manageExpense, setManageExpense }) => {
+  const { userData } = useContext(AuthContext);
   const [data, setData] = useState({
     amount: "",
     category: "",
@@ -37,7 +40,26 @@ const ManageExpense = ({ manageExpense, setManageExpense }) => {
     } else if (data.description == "") {
       alert("Please Add some description");
     } else {
-      setManageExpense(!manageExpense);
+      axios("http://localhost:4500/expense/addexpense", {
+        method: "POST",
+        data: data,
+        headers: {
+          "content-type": "application/json",
+          Authorization: userData.token,
+        },
+      })
+        .then((res) => {
+          if (res.status == 201) {
+            alert("Expense Added successfully!");
+            setManageExpense(!manageExpense);
+          } else {
+            alert("Error while creating expense");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          alert(err.message);
+        });
     }
   };
   return (

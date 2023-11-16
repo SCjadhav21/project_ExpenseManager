@@ -1,26 +1,42 @@
-/*amount: "",
-    category: "",
-    date: "",
-    description: "",
-    userId:"" */
 const express = require("express");
 const { Auth } = require("../middelware/authentication");
 require("dotenv").config();
 
 const ExpenseRoutes = express.Router();
 
-ExpenseRoutes.get("/", async (req, res) => {
+ExpenseRoutes.get("/", Auth, async (req, res) => {
   try {
-    const [rows] = await req.db.execute("SELECT * FROM expence");
-    res.json(rows);
+    const [rows] = await req.db.execute(
+      "SELECT * FROM expence WHERE userID = ?",
+      [req.body.userId]
+    );
+    res.status(200).send(rows);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
+
+ExpenseRoutes.get("/totalexpense", Auth, async (req, res) => {
+  const userId = req.body.userId;
+
+  try {
+    const selectQuery =
+      "SELECT SUM(amount) AS totalAmount FROM expence WHERE userId = ?";
+    const [rows] = await req.db.execute(selectQuery, [userId]);
+
+    const totalAmount = rows[0].totalAmount;
+
+    res.status(200).send(totalAmount);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send(err.message);
+  }
+});
+
 ExpenseRoutes.post("/addexpense", Auth, async (req, res) => {
   const { amount, category, date, description, userId } = req.body;
-  console.log(req.body);
+
   try {
     const insertQuery =
       "INSERT INTO expence ( amount, category, date, description, userId ) VALUES (?, ?, ?, ?,?)";
