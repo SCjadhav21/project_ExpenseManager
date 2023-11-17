@@ -11,7 +11,12 @@ import { BsPersonWorkspace } from "react-icons/bs";
 import { SlOptions } from "react-icons/sl";
 import { BsCheckCircleFill } from "react-icons/bs";
 import { AuthContext } from "../context/AuthContext";
-const ManageIncome = ({ manageIncome, setManageIncome }) => {
+const ManageIncome = ({
+  manageIncome,
+  refresh,
+  setRefresh,
+  setManageIncome,
+}) => {
   const { userData } = useContext(AuthContext);
   const [data, setData] = useState({
     amount: "",
@@ -57,6 +62,7 @@ const ManageIncome = ({ manageIncome, setManageIncome }) => {
         .then((res) => {
           if (res.status == 201) {
             alert("Income Added successfully!");
+            setRefresh(!refresh);
             setManageIncome(!manageIncome);
           } else {
             alert("Error while creating income");

@@ -11,7 +11,12 @@ import axios from "axios";
 import { BsCheckCircleFill } from "react-icons/bs";
 import { GiLightningSpanner, GiForkKnifeSpoon } from "react-icons/gi";
 import { AuthContext } from "../context/AuthContext";
-const ManageExpense = ({ manageExpense, setManageExpense }) => {
+const ManageExpense = ({
+  manageExpense,
+  refresh,
+  setRefresh,
+  setManageExpense,
+}) => {
   const { userData } = useContext(AuthContext);
   const [data, setData] = useState({
     amount: "",
@@ -51,6 +56,7 @@ const ManageExpense = ({ manageExpense, setManageExpense }) => {
         .then((res) => {
           if (res.status == 201) {
             alert("Expense Added successfully!");
+            setRefresh(!refresh);
             setManageExpense(!manageExpense);
           } else {
             alert("Error while creating expense");
