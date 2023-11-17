@@ -25,7 +25,6 @@ const Login = () => {
         },
       })
         .then((res) => {
-          console.log(res);
           if (res.status === 201) {
             alert("Login Successfull, You've Logged In your account.");
 

@@ -32,9 +32,54 @@
 
   text-transform: uppercase;
 }
+.range-input {
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: 1px;
+
+  height: 23px;
+
+  border-radius: 23px;
+
+  cursor: pointer;
+}
+.main-flex {
+  display: flex;
+  justify-content: space-evenly;
+}
+.main-flex > div {
+  width: 45%;
+}
+.font-css {
+  font-size: 20px;
+  font-weight: 500;
+}
+.flex-center-align {
+  display: flex;
+  margin-top: 20px;
+  gap: 10px;
+  align-items: center;
+}
+.range-input::-webkit-slider-thumb {
+  height: 18px;
+  width: 30px;
+  border-radius: 23px;
+  background: #0075ff;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+
 .button-income {
   background-image: linear-gradient(135deg, #07da06 40%, #fc894d);
 }
 .button-expense {
   background-image: linear-gradient(135deg, #f34079 40%, #fc894d);
+}
+@media only screen and (max-width: 768px) {
+  .main-flex {
+    display: block;
+  }
+  .main-flex > div {
+    width: 100%;
+  }
 }
