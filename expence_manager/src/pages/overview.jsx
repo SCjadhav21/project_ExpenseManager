@@ -20,10 +20,16 @@ function getAmountByCategory(array, category) {
 
   return totalAmount;
 }
+const getDate = (date) => {
+  date = date.split("T");
 
+  return date[0];
+};
 const Overview = () => {
   const { userData } = useContext(AuthContext);
   const [income, setIncome] = useState([]);
+  const [resentExpence, setResentExpence] = useState([]);
+  const [resentIncome, setResentIncome] = useState([]);
   const [expence, setExpence] = useState([]);
   const [refresh, setRefresh] = useState(false);
 
@@ -47,6 +53,28 @@ const Overview = () => {
       },
     })
       .then((res) => setExpence(res.data))
+      .catch((err) => console.error(err));
+  };
+  const getResentDataExpence = () => {
+    axios(`http://localhost:4500/expense/sortbyDate/DESC`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: userData.token,
+      },
+    })
+      .then((res) => setResentExpence(res.data))
+      .catch((err) => console.error(err));
+  };
+  const getResentDataIncome = () => {
+    axios(`http://localhost:4500/income/sortbyDate/DESC`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: userData.token,
+      },
+    })
+      .then((res) => setResentIncome(res.data))
       .catch((err) => console.error(err));
   };
   const expenceData = {
@@ -103,9 +131,12 @@ const Overview = () => {
 
   useEffect(() => {
     getdataExpence();
-
     getdataIncome();
+    getResentDataExpence();
+    getResentDataIncome();
   }, [refresh]);
+
+  console.log(resentIncome);
   return (
     <>
       <div className="main-container">
@@ -126,6 +157,58 @@ const Overview = () => {
             <Pie data={incomeData} />
           </div>
         </div>
+      </div>
+      <div className="table-container">
+        <h2>Last Trasactions of Expense</h2>
+        <table className="table">
+          <thead className="table-head">
+            <th>Sr.NO</th>
+            <th>Amount (in rs.)</th>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Description</th>
+          </thead>
+          <tbody>
+            {resentExpence?.map((el, index) => {
+              return (
+                <tr key={el.id}>
+                  <td>{index + 1}</td>
+                  <td>{el.amount}</td>
+                  <td>{getDate(el.date)}</td>
+                  <td>{el.category}</td>
+                  <td>{el.description}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+      <div className="table-container">
+        <h2>Last Trasactions of Income</h2>
+        <table className="table">
+          <thead className="table-head">
+            <th>Sr.NO</th>
+            <th>Amount (in rs.)</th>
+            <th>Date</th>
+            <th>PaymentSource</th>
+            <th>ReceivedBy</th>
+            <th>Description</th>
+          </thead>
+          <tbody>
+            {resentIncome?.map((el, index) => {
+              return (
+                <tr key={el.id}>
+                  <td>{index + 1}</td>
+                  <td>{el.amount}</td>
+                  <td>{getDate(el.date)}</td>
+                  <td>{el.paymentSource}</td>
+                  <td>{el.receivedBy.toUpperCase()}</td>
+                  <td>{el.description}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
     </>
   );

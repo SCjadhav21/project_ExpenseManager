@@ -33,6 +33,34 @@ IncomeRoutes.get("/totalincome", Auth, async (req, res) => {
     res.status(500).send(err.message);
   }
 });
+IncomeRoutes.get("/sortbyDate/:order", Auth, async (req, res) => {
+  try {
+    const [rows] = await req.db.execute(
+      `SELECT * FROM income WHERE userId = ? ORDER BY Date ${req.params.order}`,
+      [req.body.userId]
+    );
+    res.status(200).send(rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+IncomeRoutes.get("/getByMonth/:month", Auth, async (req, res) => {
+  const month = req.params.month;
+
+  try {
+    // Use parameterized query to avoid SQL injection
+    const [rows] = await req.db.execute(
+      `SELECT * FROM income WHERE MONTH(Date) = ?`,
+      [month]
+    );
+
+    res.status(200).send(rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
 
 IncomeRoutes.post("/addincome", Auth, async (req, res) => {
   const { amount, receivedBy, date, description, paymentSource, userId } =

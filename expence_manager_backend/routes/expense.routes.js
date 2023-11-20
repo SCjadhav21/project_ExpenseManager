@@ -17,6 +17,35 @@ ExpenseRoutes.get("/", Auth, async (req, res) => {
   }
 });
 
+ExpenseRoutes.get("/sortbyDate/:order", Auth, async (req, res) => {
+  try {
+    const [rows] = await req.db.execute(
+      `SELECT * FROM expence WHERE userId = ? ORDER BY Date ${req.params.order}`,
+      [req.body.userId]
+    );
+    res.status(200).send(rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+ExpenseRoutes.get("/getByMonth/:month", Auth, async (req, res) => {
+  const month = req.params.month;
+
+  try {
+    // Use parameterized query to avoid SQL injection
+    const [rows] = await req.db.execute(
+      `SELECT * FROM expence WHERE MONTH(\`Date\`) = ?`,
+      [month]
+    );
+
+    res.status(200).send(rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 ExpenseRoutes.get("/totalexpense", Auth, async (req, res) => {
   const userId = req.body.userId;
 
