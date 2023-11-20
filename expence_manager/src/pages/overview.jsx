@@ -136,79 +136,96 @@ const Overview = () => {
     getResentDataIncome();
   }, [refresh]);
 
-  console.log(resentIncome);
   return (
     <>
+      {" "}
+      {income.length == 0 && expence.length == 0 && (
+        <img
+          className="no-transaction-img"
+          src="https://i.pinimg.com/originals/ce/a0/0d/cea00d5472fb477c9d2bf8724fac768d.jpg"
+          alt="No Transactions Found"
+        />
+      )}
       <div className="main-container">
-        <div>
-          {" "}
-          <p className="graph-title">
-            Graphical representation Of Expense <span>By Category</span>
-          </p>
+        {expence.length !== 0 && (
           <div>
-            <Doughnut data={expenceData} />
+            {" "}
+            <p className="graph-title">
+              Graphical representation Of Expense <span>By Category</span>
+            </p>
+            <div>
+              <Doughnut data={expenceData} />
+            </div>
           </div>
-        </div>
-        <div>
-          <p className="graph-title">
-            Graphical representation Of Income <span>By Paymentsource</span>
-          </p>
+        )}
+        {income.length !== 0 && (
           <div>
-            <Pie data={incomeData} />
+            <p className="graph-title">
+              Graphical representation Of Income <span>By Paymentsource</span>
+            </p>
+            <div>
+              <Pie data={incomeData} />
+            </div>
           </div>
-        </div>
+        )}
       </div>
       <div className="table-container">
-        <h2>Last Trasactions of Expense</h2>
-        <table className="table">
-          <thead className="table-head">
-            <th>Sr.NO</th>
-            <th>Amount (in rs.)</th>
-            <th>Date</th>
-            <th>Category</th>
-            <th>Description</th>
-          </thead>
-          <tbody>
-            {resentExpence?.map((el, index) => {
-              return (
-                <tr key={el.id}>
-                  <td>{index + 1}</td>
-                  <td>{el.amount}</td>
-                  <td>{getDate(el.date)}</td>
-                  <td>{el.category}</td>
-                  <td>{el.description}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        <h2>Last Transactions of Expense</h2>
+        {expence.length !== 0 && (
+          <table className="table">
+            <thead className="table-head">
+              <th>Sr.NO</th>
+              <th>Amount (in rs.)</th>
+              <th>Date</th>
+              <th>Category</th>
+              <th>Description</th>
+            </thead>
+            <tbody>
+              {resentExpence?.map((el, index) => {
+                return (
+                  <tr key={el.id}>
+                    <td>{index + 1}</td>
+                    <td>{el.amount}</td>
+                    <td>{getDate(el.date)}</td>
+                    <td>{el.category}</td>
+                    <td>{el.description}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        )}
+        {expence.length == 0 && <h3>No Expence Transaction Found!</h3>}
       </div>
       <div className="table-container">
-        <h2>Last Trasactions of Income</h2>
-        <table className="table">
-          <thead className="table-head">
-            <th>Sr.NO</th>
-            <th>Amount (in rs.)</th>
-            <th>Date</th>
-            <th>PaymentSource</th>
-            <th>ReceivedBy</th>
-            <th>Description</th>
-          </thead>
-          <tbody>
-            {resentIncome?.map((el, index) => {
-              return (
-                <tr key={el.id}>
-                  <td>{index + 1}</td>
-                  <td>{el.amount}</td>
-                  <td>{getDate(el.date)}</td>
-                  <td>{el.paymentSource}</td>
-                  <td>{el.receivedBy.toUpperCase()}</td>
-                  <td>{el.description}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        <h2>Last Transactions of Income</h2>
+        {income.length !== 0 && (
+          <table className="table">
+            <thead className="table-head">
+              <th>Sr.NO</th>
+              <th>Amount (in rs.)</th>
+              <th>Date</th>
+              <th>PaymentSource</th>
+              <th>ReceivedBy</th>
+              <th>Description</th>
+            </thead>
+            <tbody>
+              {resentIncome?.map((el, index) => {
+                return (
+                  <tr key={el.id}>
+                    <td>{index + 1}</td>
+                    <td>{el.amount}</td>
+                    <td>{getDate(el.date)}</td>
+                    <td>{el.paymentSource}</td>
+                    <td>{el.receivedBy.toUpperCase()}</td>
+                    <td>{el.description}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        )}
+        {income.length == 0 && <h3>No Income Transaction Found!</h3>}
       </div>
     </>
   );
