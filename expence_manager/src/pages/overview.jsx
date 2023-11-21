@@ -1,82 +1,35 @@
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { useContext, useEffect, useState } from "react";
-import { Doughnut, Pie } from "react-chartjs-2";
-import axios from "axios";
-import "../css/overview.css";
 import { AuthContext } from "../context/AuthContext";
+
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { Doughnut, Pie } from "react-chartjs-2";
+
+import {
+  getResentDataExpence,
+  getResentDataIncome,
+  getdataExpence,
+  getdataIncome,
+} from "../components/api";
+import {
+  getAmountByCategory,
+  getAmountPaymentSource,
+  getDate,
+} from "../components/functions";
+
+import "../css/overview.css";
+
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-function getAmountPaymentSource(array, paymentSource) {
-  const result = array.filter((item) => item.paymentSource === paymentSource);
-
-  const totalAmount = result.reduce((sum, item) => sum + item.amount, 0);
-
-  return totalAmount;
-}
-function getAmountByCategory(array, category) {
-  const result = array.filter((item) => item.category === category);
-
-  const totalAmount = result.reduce((sum, item) => sum + item.amount, 0);
-
-  return totalAmount;
-}
-const getDate = (date) => {
-  date = date.split("T");
-
-  return date[0];
-};
 const Overview = () => {
   const { userData } = useContext(AuthContext);
+
   const [income, setIncome] = useState([]);
+  const [expence, setExpence] = useState([]);
   const [resentExpence, setResentExpence] = useState([]);
   const [resentIncome, setResentIncome] = useState([]);
-  const [expence, setExpence] = useState([]);
+
   const [refresh, setRefresh] = useState(false);
 
-  const getdataIncome = () => {
-    axios(`http://localhost:4500/income/`, {
-      method: "GET",
-      headers: {
-        "content-type": "application/json",
-        Authorization: userData.token,
-      },
-    })
-      .then((res) => setIncome(res.data))
-      .catch((err) => console.error(err));
-  };
-  const getdataExpence = () => {
-    axios(`http://localhost:4500/expense/`, {
-      method: "GET",
-      headers: {
-        "content-type": "application/json",
-        Authorization: userData.token,
-      },
-    })
-      .then((res) => setExpence(res.data))
-      .catch((err) => console.error(err));
-  };
-  const getResentDataExpence = () => {
-    axios(`http://localhost:4500/expense/sortbyDate/DESC`, {
-      method: "GET",
-      headers: {
-        "content-type": "application/json",
-        Authorization: userData.token,
-      },
-    })
-      .then((res) => setResentExpence(res.data))
-      .catch((err) => console.error(err));
-  };
-  const getResentDataIncome = () => {
-    axios(`http://localhost:4500/income/sortbyDate/DESC`, {
-      method: "GET",
-      headers: {
-        "content-type": "application/json",
-        Authorization: userData.token,
-      },
-    })
-      .then((res) => setResentIncome(res.data))
-      .catch((err) => console.error(err));
-  };
   const expenceData = {
     labels: [
       "Food and Drinks",
@@ -130,10 +83,21 @@ const Overview = () => {
   };
 
   useEffect(() => {
-    getdataExpence();
-    getdataIncome();
-    getResentDataExpence();
-    getResentDataIncome();
+    getdataExpence(userData.token)
+      .then((res) => setExpence(res.data))
+      .catch((err) => console.error(err));
+
+    getdataIncome(userData.token)
+      .then((res) => setIncome(res.data))
+      .catch((err) => console.error(err));
+
+    getResentDataExpence(userData.token)
+      .then((res) => setResentExpence(res.data))
+      .catch((err) => console.error(err));
+
+    getResentDataIncome(userData.token)
+      .then((res) => setResentIncome(res.data))
+      .catch((err) => console.error(err));
   }, [refresh]);
 
   return (

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import "../css/manageexpense.css";
+
 import { IoMdHappy, IoMdBicycle } from "react-icons/io";
 import {
   MdHealthAndSafety,
@@ -7,10 +7,14 @@ import {
   MdDateRange,
   MdShoppingCart,
 } from "react-icons/md";
-import axios from "axios";
 import { BsCheckCircleFill } from "react-icons/bs";
 import { GiLightningSpanner, GiForkKnifeSpoon } from "react-icons/gi";
+
 import { AuthContext } from "../context/AuthContext";
+import { addExpense } from "../components/api";
+
+import "../css/manageexpense.css";
+
 const ManageExpense = ({
   manageExpense,
   refresh,
@@ -45,14 +49,7 @@ const ManageExpense = ({
     } else if (data.description == "") {
       alert("Please Add some description");
     } else {
-      axios("http://localhost:4500/expense/addexpense", {
-        method: "POST",
-        data: data,
-        headers: {
-          "content-type": "application/json",
-          Authorization: userData.token,
-        },
-      })
+      addExpense(data, userData.token)
         .then((res) => {
           if (res.status == 201) {
             alert("Expense Added successfully!");
@@ -68,6 +65,7 @@ const ManageExpense = ({
         });
     }
   };
+
   return (
     <div>
       <div className="flex-container">

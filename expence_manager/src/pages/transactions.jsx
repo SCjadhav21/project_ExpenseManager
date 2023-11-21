@@ -1,92 +1,59 @@
 import React, { useContext, useEffect, useState } from "react";
-import ManageExpense from "./manageExpense";
-import "../css/transactions.css";
-import ManageIncome from "./manageincome";
+import { AuthContext } from "../context/AuthContext";
+
 import { IoMdHappy, IoMdBicycle } from "react-icons/io";
 import { FaHome } from "react-icons/fa";
-
 import { BsPersonWorkspace } from "react-icons/bs";
 import { MdHealthAndSafety, MdShoppingCart } from "react-icons/md";
-import axios from "axios";
-
 import { GiLightningSpanner, GiForkKnifeSpoon } from "react-icons/gi";
-import { AuthContext } from "../context/AuthContext";
 import { SlOptions } from "react-icons/sl";
-function getAmountByCategory(array, category) {
-  const result = array.filter((item) => item.category === category);
 
-  const totalAmount = result.reduce((sum, item) => sum + item.amount, 0);
+import ManageExpense from "./manageExpense";
+import ManageIncome from "./manageincome";
+import {
+  getTotalExpence,
+  getTotalIncome,
+  getdataExpence,
+  getdataIncome,
+} from "../components/api";
+import {
+  getAmountByCategory,
+  getAmountPaymentSource,
+} from "../components/functions";
 
-  return totalAmount;
-}
-function getAmountPaymentSource(array, paymentSource) {
-  const result = array.filter((item) => item.paymentSource === paymentSource);
+import "../css/transactions.css";
 
-  const totalAmount = result.reduce((sum, item) => sum + item.amount, 0);
-
-  return totalAmount;
-}
 const Transactions = () => {
   const { userData } = useContext(AuthContext);
+
   const [income, setIncome] = useState([]);
   const [expence, setExpence] = useState([]);
-  const [refresh, setRefresh] = useState(false);
+
   const [totalincome, setTotalIncome] = useState(0);
   const [totalexpence, setTotalExpence] = useState(0);
-  let [manageExpenseOpen, setManageExpenseOpen] = useState(false);
-  let [manageIncomeOpen, setManageIncomeOpen] = useState(false);
 
-  const getdataIncome = () => {
-    axios(`http://localhost:4500/income/`, {
-      method: "GET",
-      headers: {
-        "content-type": "application/json",
-        Authorization: userData.token,
-      },
-    })
-      .then((res) => setIncome(res.data))
-      .catch((err) => console.error(err));
-  };
-  const getdataExpence = () => {
-    axios(`http://localhost:4500/expense/`, {
-      method: "GET",
-      headers: {
-        "content-type": "application/json",
-        Authorization: userData.token,
-      },
-    })
+  const [refresh, setRefresh] = useState(false);
+  const [manageExpenseOpen, setManageExpenseOpen] = useState(false);
+  const [manageIncomeOpen, setManageIncomeOpen] = useState(false);
+
+  useEffect(() => {
+    getdataExpence(userData.token)
       .then((res) => setExpence(res.data))
       .catch((err) => console.error(err));
-  };
-  const getTotalExpence = () => {
-    axios(`http://localhost:4500/expense/totalexpense`, {
-      method: "GET",
-      headers: {
-        "content-type": "application/json",
-        Authorization: userData.token,
-      },
-    })
+
+    getTotalExpence(userData.token)
       .then((res) => setTotalExpence(res.data))
       .catch((err) => console.error(err));
-  };
-  const getTotalIncome = () => {
-    axios(`http://localhost:4500/income/totalincome`, {
-      method: "GET",
-      headers: {
-        "content-type": "application/json",
-        Authorization: userData.token,
-      },
-    })
+
+    getdataIncome(userData.token)
+      .then((res) => setIncome(res.data))
+      .catch((err) => console.error(err));
+
+    getTotalIncome(userData.token)
       .then((res) => setTotalIncome(res.data))
       .catch((err) => console.error(err));
-  };
-  useEffect(() => {
-    getdataExpence();
-    getTotalExpence();
-    getdataIncome();
-    getTotalIncome();
   }, [refresh]);
-  console.log(income, expence);
+
   return (
     <>
       {manageIncomeOpen && (
