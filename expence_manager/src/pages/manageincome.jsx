@@ -1,16 +1,18 @@
 import React, { useContext, useState } from "react";
-import "../css/manageIncome.css";
+
 import { FaCcVisa, FaHome, FaRupeeSign } from "react-icons/fa";
 import {
   MdOutlineCreditScore,
   MdSpeakerNotes,
   MdDateRange,
 } from "react-icons/md";
-import axios from "axios";
-import { BsPersonWorkspace } from "react-icons/bs";
+import { BsPersonWorkspace, BsCheckCircleFill } from "react-icons/bs";
 import { SlOptions } from "react-icons/sl";
-import { BsCheckCircleFill } from "react-icons/bs";
+
 import { AuthContext } from "../context/AuthContext";
+import { addIncome } from "../components/api";
+
+import "../css/manageIncome.css";
 const ManageIncome = ({
   manageIncome,
   refresh,
@@ -51,14 +53,7 @@ const ManageIncome = ({
     } else if (data.description == "") {
       alert("Please Add some description");
     } else {
-      axios("http://localhost:4500/income/addincome", {
-        method: "POST",
-        data: data,
-        headers: {
-          "content-type": "application/json",
-          Authorization: userData.token,
-        },
-      })
+      addIncome(data, userData.token)
         .then((res) => {
           if (res.status == 201) {
             alert("Income Added successfully!");

@@ -1,17 +1,13 @@
-import React from "react";
-import "../css/navbar.css";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+
 import { AuthContext } from "../context/AuthContext";
+import { getUserName } from "../components/functions";
+
+import "../css/navbar.css";
 const Navbar = () => {
   const { auth, userData } = useContext(AuthContext);
 
-  const getUserName = () => {
-    let words = userData.name.split(" ");
-    let firstLetters = words.map((word) => word.charAt(0));
-    let result = firstLetters.join("");
-    return result.toUpperCase();
-  };
   return (
     <div id="main">
       <div>
@@ -44,7 +40,7 @@ const Navbar = () => {
         )}
         {auth && (
           <Link id="pages" className="user-name" to="/profile">
-            {getUserName()}
+            {getUserName(userData.name)}
           </Link>
         )}
         <span></span>

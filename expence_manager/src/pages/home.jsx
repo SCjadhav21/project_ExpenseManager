@@ -1,7 +1,10 @@
 import React, { useContext } from "react";
-import "../css/home.css";
 import { Link, useNavigate } from "react-router-dom";
+
 import { AuthContext } from "../context/AuthContext";
+
+import "../css/home.css";
+
 const Home = () => {
   const { auth } = useContext(AuthContext);
   const navigate = useNavigate();

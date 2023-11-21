@@ -19,13 +19,11 @@ const { IncomeRoutes } = require("./routes/income.routes");
 app.use(express.json());
 app.use(cors());
 
-// Middleware to make the MySQL connection pool available to all routes
 app.use((req, res, next) => {
   req.db = pool;
   next();
 });
 
-// Example route to fetch data from MySQL
 app.use("/user", UserRoutes, (req, res) => {
   res.status(404).send("Routes not found");
 });

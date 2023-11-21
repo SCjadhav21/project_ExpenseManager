@@ -1,15 +1,20 @@
 import React, { useState } from "react";
-import "../css/signup.css";
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+
+import { userRegister } from "../components/api";
+
+import "../css/signup.css";
+
 const Signup = () => {
   const navigate = useNavigate();
+
   let [userData, setUserData] = useState({
     name: "",
     mobile: "",
     email: "",
     password: "",
   });
+
   const handelChange = (e) => {
     let { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
@@ -20,13 +25,7 @@ const Signup = () => {
     if (userData.mobile.length !== 10) {
       alert("Please enter valid mobile number");
     } else {
-      axios("http://localhost:4500/user/register", {
-        method: "POST",
-        data: userData,
-        headers: {
-          "content-type": "application/json",
-        },
-      })
+      userRegister(userData)
         .then((res) => {
           if (res.status === 201) {
             alert(
@@ -47,6 +46,7 @@ const Signup = () => {
         });
     }
   };
+
   return (
     <div>
       <h1 id="h1">Expense Manager</h1>

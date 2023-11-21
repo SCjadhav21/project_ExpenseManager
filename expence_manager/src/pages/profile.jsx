@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+
 import "../css/profile.css";
+
 const Profile = () => {
   const { auth, userData, logOutUser } = useContext(AuthContext);
   const navigate = useNavigate();

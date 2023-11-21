@@ -1,15 +1,20 @@
 import React, { useContext, useState } from "react";
-import "../css/login.css";
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+
 import { AuthContext } from "../context/AuthContext";
+import { userLogin } from "../components/api";
+
+import "../css/login.css";
+
 const Login = () => {
   const { auth, loginUser } = useContext(AuthContext);
   const navigate = useNavigate();
+
   let [userData, setUserData] = useState({
     email: "",
     password: "",
   });
+
   const handelChange = (e) => {
     let { type, value } = e.target;
     setUserData({ ...userData, [type]: value });
@@ -17,13 +22,7 @@ const Login = () => {
   const handelSubmit = (e) => {
     e.preventDefault();
     if (userData.email && userData.password) {
-      axios(" http://localhost:4500/user/login", {
-        method: "POST",
-        data: userData,
-        headers: {
-          "content-type": "application/json",
-        },
-      })
+      userLogin(userData)
         .then((res) => {
           if (res.status === 201) {
             alert("Login Successfull, You've Logged In your account.");
