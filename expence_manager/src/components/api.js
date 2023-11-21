@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const userRegister = (user) => {
-  return axios("http://localhost:4500/user/register", {
+  return axios("https://gray-creepy-fox.cyclic.app/user/register", {
     method: "POST",
     data: user,
     headers: {
@@ -10,7 +10,7 @@ export const userRegister = (user) => {
   });
 };
 export const userLogin = (user) => {
-  return axios(" http://localhost:4500/user/login", {
+  return axios("https://gray-creepy-fox.cyclic.app/user/login", {
     method: "POST",
     data: user,
     headers: {
@@ -20,7 +20,7 @@ export const userLogin = (user) => {
 };
 
 export const getdataIncome = (token) => {
-  return axios(`http://localhost:4500/income/`, {
+  return axios(`https://gray-creepy-fox.cyclic.app/income/`, {
     method: "GET",
     headers: {
       "content-type": "application/json",
@@ -29,7 +29,7 @@ export const getdataIncome = (token) => {
   });
 };
 export const getdataExpence = (token) => {
-  return axios(`http://localhost:4500/expense/`, {
+  return axios(`https://gray-creepy-fox.cyclic.app/expense/`, {
     method: "GET",
     headers: {
       "content-type": "application/json",
@@ -38,7 +38,7 @@ export const getdataExpence = (token) => {
   });
 };
 export const getTotalExpence = (token) => {
-  return axios(`http://localhost:4500/expense/totalexpense`, {
+  return axios(`https://gray-creepy-fox.cyclic.app/expense/totalexpense`, {
     method: "GET",
     headers: {
       "content-type": "application/json",
@@ -47,7 +47,7 @@ export const getTotalExpence = (token) => {
   });
 };
 export const getTotalIncome = (token) => {
-  return axios(`http://localhost:4500/income/totalincome`, {
+  return axios(`https://gray-creepy-fox.cyclic.app/income/totalincome`, {
     method: "GET",
     headers: {
       "content-type": "application/json",
@@ -57,7 +57,7 @@ export const getTotalIncome = (token) => {
 };
 
 export const getResentDataExpence = (token) => {
-  return axios(`http://localhost:4500/expense/sortbyDate/DESC`, {
+  return axios(`https://gray-creepy-fox.cyclic.app/expense/sortbyDate/DESC`, {
     method: "GET",
     headers: {
       "content-type": "application/json",
@@ -66,7 +66,7 @@ export const getResentDataExpence = (token) => {
   });
 };
 export const getResentDataIncome = (token) => {
-  return axios(`http://localhost:4500/income/sortbyDate/DESC`, {
+  return axios(`https://gray-creepy-fox.cyclic.app/income/sortbyDate/DESC`, {
     method: "GET",
     headers: {
       "content-type": "application/json",
@@ -76,7 +76,7 @@ export const getResentDataIncome = (token) => {
 };
 
 export const addIncome = (data, token) => {
-  return axios("http://localhost:4500/income/addincome", {
+  return axios("https://gray-creepy-fox.cyclic.app/income/addincome", {
     method: "POST",
     data: data,
     headers: {
@@ -86,7 +86,7 @@ export const addIncome = (data, token) => {
   });
 };
 export const addExpense = (data, token) => {
-  return axios("http://localhost:4500/expense/addexpense", {
+  return axios("https://gray-creepy-fox.cyclic.app/expense/addexpense", {
     method: "POST",
     data: data,
     headers: {
