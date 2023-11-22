@@ -4,11 +4,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { userLogin } from "../components/api";
 
-import "../css/login.css";
+import { IoEyeSharp, IoEyeOff } from "react-icons/io5";
+
+import "../css/login-signup.css";
 
 const Login = () => {
   const { auth, loginUser } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [show, setShow] = useState(false);
 
   let [userData, setUserData] = useState({
     email: "",
@@ -16,8 +19,8 @@ const Login = () => {
   });
 
   const handelChange = (e) => {
-    let { type, value } = e.target;
-    setUserData({ ...userData, [type]: value });
+    let { id, value } = e.target;
+    setUserData({ ...userData, [id]: value });
   };
   const handelSubmit = (e) => {
     e.preventDefault();
@@ -72,9 +75,16 @@ const Login = () => {
           onChange={handelChange}
           required
           id="password"
-          type="Password"
+          type={show ? "text" : "password"}
           placeholder="Enter password"
         />
+
+        {show ? (
+          <IoEyeSharp className="eye-button" onClick={() => setShow(false)} />
+        ) : (
+          <IoEyeOff className="eye-button" onClick={() => setShow(true)} />
+        )}
+
         <button className="button" role="button">
           Sign In
         </button>

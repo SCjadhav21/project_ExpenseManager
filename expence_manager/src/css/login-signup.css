@@ -2,13 +2,18 @@ body {
   align-items: center;
   margin: auto;
 }
+
+body {
+  align-items: center;
+  margin: auto;
+}
 form {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   align-items: center;
   padding: 20px;
   margin: auto;
-  height: 40%;
   width: 40%;
+  height: 40%;
 }
 #h1 {
   text-align: center;
@@ -51,6 +56,12 @@ form > h2 {
 }
 a {
   color: blue;
+}
+.eye-button {
+  margin-left: -30px;
+  margin-bottom: -5px;
+  font-size: 20px;
+  cursor: pointer;
 }
 #but2 {
   color: blue;

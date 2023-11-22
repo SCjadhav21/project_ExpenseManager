@@ -3,10 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { userRegister } from "../components/api";
 
-import "../css/signup.css";
+import { IoEyeSharp, IoEyeOff } from "react-icons/io5";
+
+import "../css/login-signup.css";
 
 const Signup = () => {
   const navigate = useNavigate();
+  const [show, setShow] = useState(false);
 
   let [userData, setUserData] = useState({
     name: "",
@@ -89,10 +92,14 @@ const Signup = () => {
           name="password"
           onChange={handelChange}
           value={userData.password}
-          type="password"
+          type={show ? "text" : "password"}
           placeholder="Enter password"
         />
-
+        {show ? (
+          <IoEyeSharp className="eye-button" onClick={() => setShow(false)} />
+        ) : (
+          <IoEyeOff className="eye-button" onClick={() => setShow(true)} />
+        )}
         <button className="button">SIGN UP</button>
         <p>
           Alredy have an Account? <Link to="/login">Sign In</Link>
